@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nominatim-flatnode
+  namespace: gdsc
+spec:
+  storageClassName: local-nominatim-flatnode
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi

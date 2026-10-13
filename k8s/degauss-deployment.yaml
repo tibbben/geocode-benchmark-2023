@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: degauss-geocode
+  namespace: gdsc
+  labels:
+    app: degauss-geocode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: degauss-geocode
+  template:
+    metadata:
+      labels:
+        app: degauss-geocode
+    spec:
+      serviceAccountName: gdsc-controller
+      containers:
+        - name: geocoder
+          image: ghcr.io/degauss-org/geocoder
+          command: ["/bin/bash"]
+          args: ["-c","tail -F /dev/null"]
+          volumeMounts:
+            - name: data-ceph-pvc
+              mountPath: /data
+      volumes:
+        - name: data-ceph-pvc
+          persistentVolumeClaim:
+            claimName: data-ceph
+
+# $ kubectl exec degauss-##########-##### -n gdsc -- ruby /app/geocode.rb "some address"

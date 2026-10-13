@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-postgis-geocode
+  labels:
+    type: local
+  namespace: gdsc
+spec:
+  storageClassName: local-postgis-geocode
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "{{repo}}/volumes/postgis_geocode"
+
+    # replace {{repo}} with te absolute path on your local machine to a directory for the postgres data directory

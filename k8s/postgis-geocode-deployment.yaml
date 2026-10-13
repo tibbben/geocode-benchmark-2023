@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgis-geocode
+  namespace: gdsc
+  labels:
+    app: postgis-geocode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgis-geocode
+  template:
+    metadata:
+      labels:
+        app: postgis-geocode
+    spec:
+      serviceAccountName: gdsc-controller
+      containers:
+        - name: postgis-geocode
+          image: postgis/postgis:15-master
+          ports:
+            - containerPort: 5432
+          env:
+            - name: LD_LIBRARY_PATH
+              value: /usr/lib/postgresql
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgis
+                  key: POSTGRES_DB
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgis
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgis
+                  key: POSTGRES_PASSWORD
+            - name: SDE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgis
+                  key: SDE_PASSWORD
+          volumeMounts:
+            - name: postgis-pgdata
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgis-pgdata # database data store
+          persistentVolumeClaim:
+            claimName: postgis-geocode

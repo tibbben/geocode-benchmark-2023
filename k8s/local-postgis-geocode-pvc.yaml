@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgis-geocode
+  namespace: gdsc
+spec:
+  storageClassName: local-postgis-geocode
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests: 
+      storage: 100Gi

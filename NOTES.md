@@ -1,8 +1,8 @@
 # Geocode Benchmark Notes  
 
-The process and results of a simple geocoding benchmark experiment to evaluate geocoding precision, accuracy, and geocoder characteristics for four geocoding tools: the ESRI ArcGIS geocoder in ArcGIS Pro with a paid subscription to the ESRI North America street database, the oepn source Nominatim  geocoder based on the Open Street Map database, the DeGauss geocoding tool based on the US Census TIGER line files, and the PostGIS TIGER Line geocoding tool also baed on the US Census TIGER line files. 
+The process and results of a simple geocoding benchmark experiment to evaluate geocoding precision, accuracy, and geocoder characteristics for four geocoding tools: the ESRI ArcGIS geocoder in ArcGIS Pro with a paid subscription to the ESRI North America street database, the oepn source Nominatim geocoder based on the Open Street Map database, the DeGauss geocoding tool based on the US Census TIGER line files, and the PostGIS TIGER Line geocoding tool also baed on the US Census TIGER line files. The three open source geocoders were run on a kubernetes cluster. The k8s deployment manifests are in the k8s directory.
 
-I utilized 5000 random address drawn from the [Miami-Dade County Open Data Hu](https://gis-mdc.opendata.arcgis.com/) - [Property Point View](https://gis-mdc.opendata.arcgis.com/datasets/bf92e51f90a8426cae904ebc15018067_0/explore?location=25.727426%2C-80.236112%2C10) likely downloaded in early September of 2023. Note that Miami-Dade County GIS office runs the Open Data Hub using the ESRI Enterprise Suite.
+I utilized 5000 random address drawn from the [Miami-Dade County Open Data Hu](https://gis-mdc.opendata.arcgis.com/) - [Property Point View](https://gis-mdc.opendata.arcgis.com/datasets/bf92e51f90a8426cae904ebc15018067_0/explore?location=25.727426%2C-80.236112%2C10) downloaded in early September of 2023. Note that Miami-Dade County GIS office runs the Open Data Hub using the ESRI Enterprise Suite.
 
 ### Randomly select 5000 addresses
 

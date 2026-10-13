@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nominatim
+  namespace: gdsc
+  labels:
+    app: nominatim
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nominatim
+  template:
+    metadata:
+      labels:
+        app: nominatim
+    spec:
+      serviceAccountName: gdsc-controller
+      containers:
+        - name: nominatim
+          image:  mediagis/nominatim:4.2
+          command: ["/bin/bash"]
+          args: ["-c","tail -F /dev/null"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: postgis-data
+              mountPath: /var/lib/postgresql/14/main
+            - name: flatnode
+              mountPath: /nominatim/flatnode
+      volumes:
+        - name: postgis-data # postgres database
+          persistentVolumeClaim:
+            claimName: nominatim-postgres
+        - name: flatnode # flatnode file
+          persistentVolumeClaim:
+            claimName: nominatim-flatnode

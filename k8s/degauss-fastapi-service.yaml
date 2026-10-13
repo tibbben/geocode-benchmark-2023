@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: degauss-fastapi
+  namespace: gdsc
+  labels: 
+    app: degauss-fastapi
+spec:
+  type: LoadBalancer
+  selector:
+    app: degauss-fastapi
+  ports:
+   - name: http
+     port: 8000
+     targetPort: 8000
+     protocol: TCP

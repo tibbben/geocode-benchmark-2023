@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: degauss-fastapi
+  namespace: gdsc
+  labels:
+    app: degauss-fastapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: degauss-fastapi
+  template:
+    metadata:
+      labels:
+        app: degauss-fastapi
+    spec:
+      serviceAccountName: gdsc-controller
+      imagePullSecrets:
+        - name: docker-hub-cred 
+      containers:
+        - name: degauss-fastapi
+          image: tibben/pg:degaussAPI
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000 
+          command: ["/bin/sh"]
+          args: ["-c","tail -F /dev/null"]

@@ -8,12 +8,12 @@ See the [NOTES.md](NOTES.md) for more information.
 
 ### geocoders evaluated
 
-|                                       | Addresses remain in-house | Local installation | HIPAA Compliance * | License Fees |
-|---------------------------------------|:-------------------------:|:------------------:|:------------------:|:------------:|
-| ArcGIS Enterprise / Streetmap Premium |             X             |          X         |          X         |      $$$     |
-| Nominatim                             |             X             |          X         |          X         |              |
-| DeGAUSS **                            |             X             |          X         |          X         |              |
-| PostGIS Tiger **                      |             X             |          X         |          X         |              |
+|                                       | Addresses remain in-house | Local installation | Deployment | Coverage |   Subset   |  HIPAA Compliance * | License Fees |
+|---------------------------------------|:-------------------------:|:------------------:|:----------:|:--------:|:----------:|:-------------------:|:------------:|
+| ArcGIS Enterprise / Streetmap Premium |             X             |          X         |    easy    |  global  |    n/a     |        X            |      $$$     |
+| Nominatim                             |             X             |          X         |  moderate  |  global  | by region  |        X            |              |
+| DeGAUSS **                            |             X             |          X         |    easy    |   USA    |  by state  |        X            |              |
+| PostGIS Tiger **                      |             X             |          X         |  moderate  |   USA    |    n/a     |        X            |              |
 
 ### Summary Statistics
 
@@ -28,7 +28,7 @@ See the [NOTES.md](NOTES.md) for more information.
 ### Contents
 
 ```
-+-- data
++-- 2023-geocode-benchmark
 |   benchmarking.ipynb                          # Jupyter notebook used for parts of the geocoding
 |   geocode_analyze.gqs                         # QGIS project for visualization and analysis *
 |   +-- data  
@@ -44,7 +44,7 @@ See the [NOTES.md](NOTES.md) for more information.
 ```
 
 > \* The QGIS project needs all files in the data directory _and_ geocode.sql needs to be ingested into a local version of Postgres with the postGIS extension running on port 5432. If you need to change the port, open the QGIS project in a text editor and search/replace all instances of 5432 with your desired port.
-> \*\* I do not have documentation for this source
+> \*\* I do not have documentation for this source, but it is a crosswalk from zip codes to counties
 
 ### Contact:
 

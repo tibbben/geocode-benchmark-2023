@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: postgis-rolebinding
+  namespace: gdsc
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: postgis-role
+subjects:
+- namespace: gdsc 
+  kind: ServiceAccount
+  name: gdsc-controller

@@ -12,6 +12,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "{{repo}}/volumes/postgis_geocode"
+    path: "{{postgis_data_dir}}"
 
-    # replace {{repo}} with te absolute path on your local machine to a directory for the postgres data directory
+    # replace {{postgis_data_dir}} with te absolute path on your local machine to a directory for the postgres data directory
+    # on windows prefix the path with: /run/desktop/mnt/host/<drive>/

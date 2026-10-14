@@ -12,6 +12,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "{{repo}}/volumes/nominatim/flatnode"
+    path: "{{nomintatim_flatnode}}"
 
-    # replace {{repo}} with the absolute path on your local machine to where you want to store your nominatim data
+    # replace {{nomintatim_flatnode}} with the absolute path on your local machine to where you want to store your nominatim flatnode data
+    # on windows prefix the path with: /run/desktop/mnt/host/<drive>/

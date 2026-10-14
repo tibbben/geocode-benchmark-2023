@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-nominatim-postgres
+  labels:
+    type: local
+  namespace: gdsc
+spec:
+  storageClassName: local-nominatim-postgres
+  capacity:
+    storage: 160Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "{{nomintatim_postgres}}"
+
+    # replace {{nomintatim_postgres}} with the absolute path on your local machine to where you want to store your nominatim postgres data
+    # on windows prefix the path with: /run/desktop/mnt/host/<drive>/
